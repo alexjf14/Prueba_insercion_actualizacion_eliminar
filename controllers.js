@@ -7,8 +7,8 @@ var FinalApp = angular.module('FinalApp')
 
 
  FinalApp.controller('PostController', function($scope,$resource,$routeParams) {
- 	Post = $resource('http://localhost:9000/Country/:idCountry/?format=json',{id: "@idCountry"});
- 	$scope.post = Post.get({id: $routeParams.idCountry});
+ 	Post = $resource('http://localhost:9000/Country/:idCountry/?format=json',{idCountry: "@idCountry"});
+ 	$scope.post = Post.get({idCountry: $routeParams.idCountry});
 
  }); 
 
