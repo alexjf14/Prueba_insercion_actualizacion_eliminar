@@ -1,14 +1,37 @@
 var FinalApp = angular.module('FinalApp')
-	FinalApp.controller('MainController',function($scope,$resource){
+	FinalApp.controller('MainController',function($scope,$resource,PostResource){
 		
-		Post = $resource('http://localhost:9000/Country/:idCountry',{id: "@idCountry"});
-		$scope.posts = Post.query();
+		
+		$scope.posts = PostResource.query();
+
+		$scope.removePost = function(post){
+			PostResource.delete({idCountry: post.idCountry}, function(data){
+
+				console.log(data);
+			});
+
+			$scope.posts = $scope.posts.filter(function(element){
+				return  element.idCountry !== post.idCountry
+			});
+		}
 	})
 
 
- FinalApp.controller('PostController', function($scope,$resource,$routeParams) {
- 	Post = $resource('http://localhost:9000/Country/:idCountry/?format=json',{idCountry: "@idCountry"});
- 	$scope.post = Post.get({idCountry: $routeParams.idCountry});
+ FinalApp.controller('PostController', function($scope,PostResource,$routeParams) {
+ 	
+ 	$scope.post = PostResource.get({idCountry: $routeParams.idCountry});
+
+ }); 
+
+
+ FinalApp.controller('NewPostController', function($scope,PostResource) {
+ 	PostResource = $resource('http://localhost:9000/Country/:idCountry',{idCountry: "@idCountry"});
+ 	$scope.post = {};
+ 	$scope.savePost = function(){
+ 		PostResource.save({data: $scope.post}, function(data){
+ 			console.log(data);
+ 		});
+ 	}
 
  }); 
 

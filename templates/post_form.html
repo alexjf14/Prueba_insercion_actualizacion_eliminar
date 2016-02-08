@@ -1,0 +1,10 @@
+<form ng-submit="savePost()">
+	<div class="box">
+		<h2>Crear Post</h2>
+			<input type="number" placeholder="codigo" ng-model="post.code"/>
+			<input type="text" placeholder="Titulo" ng-model="post.name"/>
+			<textarea maxlength="254" placeholder="Ingrese sus contenido" ng-model="post.note"></textarea>
+			<input type="submit" value="Agregar datos"/>
+	</div>
+</form>
+

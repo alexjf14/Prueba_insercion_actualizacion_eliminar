@@ -14,6 +14,12 @@ FinalApp.config(function($routeProvider){
 	           
 	        })
 
-
+	        .when('/posts/new', {
+	        	controller  : 'NewPostController',
+	            templateUrl : 'templates/post_form.html'
+	           
+	        })
+ 
 	});
+
 
